@@ -260,13 +260,15 @@
                   <Component id="jSplitPane1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCorreoDup" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCorreoDup" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnAyudaDup" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnAceptarDup" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCancelarDup" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnAyudaDup" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblCorreoDup" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCorreoDup" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -433,6 +435,9 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JCheckBox" name="cbCorreoValido">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="separator">
     </Component>
@@ -451,6 +456,9 @@
         <Property name="text" type="java.lang.String" value="...."/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="pwdContrase&#xf1;aDup.putClientProperty(FlatClientProperties.STYLE, &quot;showRevealButton:true&quot;);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnAceptarDup">
       <Properties>

@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.regex.Pattern;
+import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
@@ -15,6 +16,7 @@ public class InterfazMixta extends javax.swing.JFrame {
         initComponents();
         inicializarEventosParte1();
         inicializarEventosParte2();
+        inicializarEventosParte3();
     }
 
     @SuppressWarnings("unchecked")
@@ -137,12 +139,15 @@ public class InterfazMixta extends javax.swing.JFrame {
 
         splitPane.setLeftComponent(pane2);
 
+        cbCorreoValido.setEnabled(false);
+
         txtCorreoDup.setEnabled(false);
 
         txtCampo1Dup.setEnabled(false);
 
         pwdContraseñaDup.setText("....");
         pwdContraseñaDup.setEnabled(false);
+        pwdContraseñaDup.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
 
         btnAceptarDup.setText("Aceptar");
         btnAceptarDup.setEnabled(false);
@@ -425,13 +430,14 @@ public class InterfazMixta extends javax.swing.JFrame {
                             .addComponent(cbListaDup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreoDup)
-                    .addComponent(txtCorreoDup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAyudaDup, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnAceptarDup)
-                        .addComponent(btnCancelarDup)
-                        .addComponent(btnAyudaDup, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCancelarDup))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCorreoDup)
+                        .addComponent(txtCorreoDup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContraseñaDup)
@@ -612,6 +618,42 @@ public class InterfazMixta extends javax.swing.JFrame {
                     lblStatus.setText("Correo inválido");
                 }
             }
+        });
+    }
+
+    private void inicializarEventosParte3() {
+
+        // 1. Botón Aceptar reflejando acción en duplicado
+        btnAceptar.addActionListener(e -> {
+            // Acción original
+            lblStatus.setText("¡Aceptar pulsado!");
+            // Reflejar en duplicado
+            btnAceptarDup.doClick();
+        });
+
+        btnAceptarDup.addActionListener(e -> {
+            lblStatus.setText("¡Botón duplicado pulsado!");
+        });
+
+        // 2. Botón Ayuda mostrando mensaje
+        btnAyuda.addActionListener(e -> {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Este es un mensaje de ayuda",
+                    "Ayuda",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        });
+
+        btnAyudaDup.addActionListener(e -> {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Este es un mensaje de ayuda (duplicado)",
+                    "Ayuda",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        });
+
+        // 3. Sincronizar JSplitPane
+        splitPane.addPropertyChangeListener(JSplitPane.DIVIDER_LOCATION_PROPERTY, e -> {
+            int loc = splitPane.getDividerLocation();
+            jSplitPane1.setDividerLocation(loc);
         });
     }
 
